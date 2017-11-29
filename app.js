@@ -28,10 +28,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 var mongo_pw = process.env.MONGO_PW;
-var url = 'mongodb://localhost:27017/secret';
-var session_url = 'mongodb://@localhost:27017/secrets';
+var url = 'mongodb://dbUser:password23@ds123956.mlab.com:23956/favcolor';
+var session_url = 'mongodb://dbUser:password23@ds123956.mlab.com:23956/favcolor';
 
-
+console.log(session_url);
 app.use(session({
     secret: 'replace me with long random string',
     resave: true,
@@ -44,7 +44,7 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());         // This creates an req.user variable for logged in users.
 app.use(flash());
-
+console.log(url);
 mongoose.connect(url);
 
 app.use('/', index);
